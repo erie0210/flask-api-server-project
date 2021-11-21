@@ -1,9 +1,9 @@
 <title>{% block title %}{% endblock %} - apps</title>
 <nav>
-  <h1>apps</h1>
+  <h1>가게부</h1>
   <ul>
     {% if session['user_id'] %}
-      <li><span>{{ session['email'] }}</span>
+      <li><span>유저 이메일: {{ session['email'] }}</span>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
     {% else %}
       <li><a href="{{ url_for('auth.register') }}">Register</a>
