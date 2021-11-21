@@ -33,7 +33,8 @@ def create():
       error = '제목을 입력해주세요'
     if not amount:
       error = '금액을 입력해주세요'
-    print(session)
+    if not amount.isnumeric():
+      error = '금액에 숫자를 입력해주세요'
     if error is not None:
       flash(error)
     else:
