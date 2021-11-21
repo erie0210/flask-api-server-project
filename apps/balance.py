@@ -15,8 +15,7 @@ bp = Blueprint('balance', __name__)
 @bp.route('/')
 @auth.login_required
 def index():
-  print("session", session)
-  all_posts = model.Post.query.all()
+  all_posts = model.Post.query.filter(model.Post.author_id==session['user_id']).all()
   return render_template('balance/index.html', posts=all_posts)
 
 
