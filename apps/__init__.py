@@ -20,4 +20,9 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    # BALANCE: 가계부 블루프린트
+    from . import balance
+    app.register_blueprint(balance.bp)
+    app.add_url_rule('/', endpoint='index')
+
     return app
