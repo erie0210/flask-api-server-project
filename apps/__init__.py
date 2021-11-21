@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config 
 
 def create_app(test_config=None):
 
@@ -17,9 +16,8 @@ def create_app(test_config=None):
     db = SQLAlchemy()
     db.init_app(app)
 
-    # flask 서버 확인
-    @app.route('/hello')
-    def hello():
-      return "hello"
+        # AUTH: 인증 관련 블루프린트 
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     return app
