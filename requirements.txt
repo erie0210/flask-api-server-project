@@ -1,7 +1,6 @@
 pymysql>=1.0.2
 flask==1.1.2
 Flask-Script==2.0.6
-Flask-SQLAlchemy==2.5.1
 Flask-WTF==0.14.3
 Flask-Login==0.5.0
 mysqlclient==2.0.3
@@ -11,3 +10,4 @@ requests==2.25.1
 flasgger==0.9.5
 Flask-Migrate>=3.1.0
 Flask-Script>=2.0.6
+flask_sqlalchemy==2.5.1
