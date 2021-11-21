@@ -1,4 +1,3 @@
-from inspect import _empty
 from flask import Blueprint, request, redirect, flash, url_for, session, g
 from flask.templating import render_template
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -14,7 +13,11 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 def login_required(view):
   @functools.wraps(view)
   def wrapped_view(**kwargs):
-    print("login required session", session)
+    print("login_required session", session)
+    session_keys = session.keys()
+    if 'user' in session_keys:
+      session['login']=False
+      return redirect(url_for('auth.login'))
     if not session['login']:
       return redirect(url_for('auth.login'))
     return view(**kwargs)

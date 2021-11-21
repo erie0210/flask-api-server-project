@@ -78,11 +78,10 @@ def update(id):
   return render_template('balance/update.html', post=post)
 
 
-@bp.route('/<int:id>/delete', methods=('POST',))
+@bp.route('/<int:id>/delete', methods=('GET', 'POST'))
 @auth.login_required
 def delete(id):
-  id = id['id']
-
+  print("delete id", id, session)
   post = model.Post.query.filter_by(id=id).one()
   if post is None:
     abort(404, "Post id {0} doesn't exist.".format(id))
