@@ -51,8 +51,6 @@ def register():
       data = model.MyUser(
         email= email,
         password = generate_password_hash(password),
-        created_at=datetime.datetime.now().replace(tzinfo=None),
-        updated_at=datetime.datetime.now().replace(tzinfo=None),
       )
       select_user = model.MyUser.query.filter_by(email = request.form['email']).all()
       if len(select_user) > 0:
