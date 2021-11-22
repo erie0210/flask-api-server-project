@@ -3,8 +3,8 @@
 {% block header %}
   <h1>{% block title %}가게부{% endblock %}</h1>
   {% if session['user_id'] %}
-    <a class="action" href="{{ url_for('balance.create') }}">작성하기</a>
-    <a class="action" href="{{ url_for('balance.rollbacklist') }}">복구하기</a>
+  <a class="action" href="{{ url_for('balance.create') }}">작성하기</a>
+  <a class="action" href="{{ url_for('balance.index') }}">리스트로</a>
   {% endif %}
 {% endblock %}
 
@@ -21,7 +21,9 @@
       </header>
       <p class="body">{{ post['body'] }}</p>
     </article>
-    <a class="action" href="{{ url_for('balance.update', id=post['id']) }}">수정하기</a>
+    <form action="{{ url_for('balance.rollback', id=post['id']) }}" method="post">
+      <input class="danger" type="submit" value="복구하기" onclick="return confirm('복구하시겠습니까?');">
+    </form>
     {% if not loop.last %}
       <hr>
     {% endif %}

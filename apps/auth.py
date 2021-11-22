@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Blueprint, request, redirect, flash, url_for, session, g
 from flask.templating import render_template
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -18,7 +19,7 @@ def login_required(view):
     if 'user' in session_keys:
       session['login']=False
       return redirect(url_for('auth.login'))
-    if not session['login']:
+    if 'login' in session_keys and session['login']==False:
       return redirect(url_for('auth.login'))
     return view(**kwargs)
   return wrapped_view

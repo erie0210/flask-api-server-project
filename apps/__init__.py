@@ -9,17 +9,15 @@ def create_app(test_config=None):
 
     app = Flask(__name__, instance_relative_config=True)
 
-    app.config.from_mapping(
-      SECRET_KEY='dev'
-    )
-    
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://admin:adminadmin@database.cpzfde8y7eey.ap-northeast-2.rds.amazonaws.com:3306/database"
+    app.config['SECRET_KEY'] = 'dev'
+    app.config['JSON_AS_ASCII'] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://admin:adminadmin@database.cpzfde8y7eey.ap-northeast-2.rds.amazonaws.com:3306/database?charset=utf8"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db = SQLAlchemy()
     db.init_app(app)
 
-        # AUTH: 인증 관련 블루프린트 
+    # AUTH: 인증 관련 블루프린트 
     from . import auth
     app.register_blueprint(auth.bp)
 

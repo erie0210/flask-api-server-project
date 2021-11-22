@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -26,8 +27,9 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, server_default = db.FetchedValue())
     updated_at = db.Column(db.DateTime, server_default = db.FetchedValue())
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    deleted = db.Column(db.Boolean, default=0)
 
-    def __init__(self, amount, title, body, created_at, updated_at, author_id):
+    def __init__(self, amount, title, body, created_at, updated_at, author_id, deleted):
         self.id = id
         self.amount = amount
         self.title = title
@@ -35,3 +37,4 @@ class Post(db.Model):
         self.created_at = created_at
         self.updated_at = updated_at
         self.author_id = author_id
+        self.deleted = deleted
