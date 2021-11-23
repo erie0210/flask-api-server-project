@@ -54,10 +54,18 @@ JINJA2
 ```
 
 
-## 3. 화면구성
+## 3. 배포, 실행
 
-
-
+도커: docker pull ej00923/payhere
+깃헙:
+$ git clone https://github.com/erie0210/payhere
+$ cd payhere
+$ pip install -r requirements.txt
+$ python -m venv venv
+$ source venv/Scripts/activate
+$ export FLASK_APP=apps
+$ export FLASK_ENV=development
+$ flask run
 
 ## 4. DB-erd
 
@@ -87,6 +95,7 @@ CREATE TABLE post (
 );
 ```
 
+## 4. 실행화면
 
 
 
