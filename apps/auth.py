@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, request, redirect, flash, url_for, session, g
+from flask import Blueprint, request, redirect, flash, url_for, session
 from flask.templating import render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 import functools
-
 from apps.model import model
 
-
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-
 
 def login_required(view):
   @functools.wraps(view)
@@ -22,7 +19,6 @@ def login_required(view):
     return view(**kwargs)
   return wrapped_view
 
-
 @bp.before_app_first_request
 def load_logged_in_user():
   user_id = session.get('user_id')
@@ -30,7 +26,6 @@ def load_logged_in_user():
     session['user'] = None
   else:
     model.MyUser.query.filter_by(id=user_id).one()
-
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -82,7 +77,6 @@ def register():
     flash(error)
   return render_template('auth/register.html')
 
-
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
   """
@@ -130,7 +124,6 @@ def login():
       return redirect(url_for('index'))
     flash(error)
   return render_template('auth/login.html')
-
 
 @bp.route('/logout')
 def logout():

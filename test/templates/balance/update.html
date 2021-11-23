@@ -6,12 +6,12 @@
 
 {% block content %}
   <form method="post">
-    <label for="title">Title</label>
+    <label for="title">제목</label>
     <input name="title" id="title"
       value="{{ request.form['title'] or post['title'] }}" required>
-    <input name="amount" id="amount"
-      value="{{ request.form['amount'] or post['amount'] }}" required>
-    <label for="body">Body</label>
+    <label for="body">금액</label>
+    <input name="amount" id="amount" value="{{ request.form['amount'] or post['amount'] }}" required>
+    <label for="body">상세내용</label>
     <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
     <input type="submit" value="Save">
   </form>

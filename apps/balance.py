@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, session
-)
+from flask import ( Blueprint, flash, redirect, render_template, request, url_for, session )
 from werkzeug.exceptions import abort
-
 from . import auth
-
-
 from apps.model import model
 import datetime
 
 bp = Blueprint('balance', __name__)
-
 
 @bp.route('/')
 @auth.login_required
@@ -42,7 +36,6 @@ def rollbacklist():
   """
   all_posts = model.Post.query.filter(model.Post.author_id==session['user_id'], model.Post.deleted==1).all()
   return render_template('balance/rollback.html', posts=all_posts)
-
 
 @bp.route('/create', methods=('GET', 'POST'))
 @auth.login_required
@@ -104,9 +97,7 @@ def create():
       return redirect(url_for('balance.index'))
   return render_template('balance/create.html')
 
-
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
-# @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @auth.login_required
 def update(id):
   """
@@ -163,7 +154,6 @@ def update(id):
       return redirect(url_for('balance.index'))
   return render_template('balance/update.html', post=post)
 
-
 @bp.route('/<int:id>/delete', methods=('POST',))
 @auth.login_required
 def delete(id):
@@ -191,7 +181,6 @@ def delete(id):
     model.db.session.commit()
     model.db.session.remove()
   return redirect(url_for('index'))
-
 
 @bp.route('/<int:id>/rollback', methods=('GET', 'POST'))
 @auth.login_required
