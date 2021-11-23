@@ -4,8 +4,16 @@ from flask.templating import render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 import functools
 from apps.model import model
+import re
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
+def check(email):
+  if(re.fullmatch(regex, email)):
+    return True
+  else:
+    return False
 
 def login_required(view):
   @functools.wraps(view)
@@ -18,14 +26,6 @@ def login_required(view):
       return redirect(url_for('auth.login'))
     return view(**kwargs)
   return wrapped_view
-
-@bp.before_app_first_request
-def load_logged_in_user():
-  user_id = session.get('user_id')
-  if user_id is None:
-    session['user'] = None
-  else:
-    model.MyUser.query.filter_by(id=user_id).one()
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -58,6 +58,8 @@ def register():
       error = '이메일을 입력해주세요'
     elif not password:
       error = '비밀번호를 입력해주세요'
+    if not check(email):
+      error = '이메일 형식을 맞춰주세요.'
 
     try:
       data = model.MyUser(
