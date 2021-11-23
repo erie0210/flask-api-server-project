@@ -51,7 +51,6 @@ def create():
         amount = amount,
         body = body,
         created_at=datetime.datetime.now().replace(tzinfo=None),
-        updated_at=datetime.datetime.now().replace(tzinfo=None),
         author_id=session['user_id'],
         deleted=0
       )
