@@ -5,7 +5,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import functools
 
 from apps.model import model
-import datetime
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -34,9 +33,28 @@ def load_logged_in_user():
     model.MyUser.query.filter_by(id=user_id).one()
 
 
-
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+  """
+  회원가입
+  ---
+  parameters:
+  - name: 이메일(email)
+    description: 이메일주소
+    in: request
+    type: string
+    required: true
+  - name: 비밀번호(passowrd)
+    description: 비밀번호
+    in: request
+    type: string
+    required: true
+  responses:
+    200:
+      description : 회원가입 성공, '/' 로 리다이렉트 되어 가게부 목록 출력
+    500:  
+      description : 회원가입 실패, ' auth/register' 로 리다이렉트
+  """
   if request.method == 'POST':
     email = request.form['email']
     password = request.form['password']
@@ -68,6 +86,26 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+  """
+  로그인
+  ---
+  parameters:
+  - name: 이메일(email)
+    description: 이메일주소
+    in: request
+    type: string
+    required: true
+  - name: 비밀번호(passowrd)
+    description: 비밀번호
+    in: request
+    type: string
+    required: true
+  responses:
+    200:
+      description : 로그인 성공, '/' 로 리다이렉트 되어 가게부 목록 출력
+    500:  
+      description : 로그인 실패, ' auth/login' 로 리다이렉트
+  """
   if session['login']== True:
     return redirect(url_for('index'))
 
@@ -95,6 +133,15 @@ def login():
 
 @bp.route('/logout')
 def logout():
+  """
+  로그아웃
+  ---
+  responses:
+    200:
+      description : 로그아웃 성공, '/' 로 리다이렉트
+    500:  
+      description : 로그아웃 실패, '/' 로 리다이렉트
+  """
   session.clear()
   session['login'] = False
   print("session", session)
