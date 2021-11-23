@@ -16,4 +16,3 @@ CREATE TABLE post (
   body TEXT,
   deleted INTEGER(11),
   FOREIGN KEY (author_id) REFERENCES user (id)
-);
