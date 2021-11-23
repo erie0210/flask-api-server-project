@@ -19,17 +19,9 @@ def login_required(view):
   @functools.wraps(view)
   def wrapped_view(**kwargs):
     session_keys = session.keys()
-    
-    # 로그인 한 유저가 아닌 경우:
-    # 아예 비어있는 경우
-    if 'user' not in session_keys:
-      return redirect(url_for('auth.login'))
-    # user는 있으나 None인 경우 
-    # (user가 다른 값으로 존재할 경우를 대비해 login 값을 false로 넣어준다)
     if 'user' in session_keys:
       session['login']=False
       return redirect(url_for('auth.login'))
-    # login이 false인 경우
     if 'login' in session_keys and session['login']==False:
       return redirect(url_for('auth.login'))
     return view(**kwargs)
