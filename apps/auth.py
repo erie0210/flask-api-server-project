@@ -19,6 +19,8 @@ def login_required(view):
   @functools.wraps(view)
   def wrapped_view(**kwargs):
     session_keys = session.keys()
+    if len(session_keys)==0:
+      return redirect(url_for('auth.login'))
     if 'user' in session_keys:
       session['login']=False
       return redirect(url_for('auth.login'))
