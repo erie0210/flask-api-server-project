@@ -10,14 +10,14 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-  SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DB_URL')
+  SQLALCHEMY_DATABASE_URI = "mysql+pymysql://admin:adminadmin@database.cpzfde8y7eey.ap-northeast-2.rds.amazonaws.com:3306/database?charset=utf8"
   SQLALCHEMY_ECHO = False
   SECRET_KEY = 'SECRET-KEY'
 
 
 class DevelopmentConfig(Config):
   DEBUG = True
-  SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DB_URL')
+  SQLALCHEMY_DATABASE_URI = "mysql+pymysql://admin:adminadmin@database.cpzfde8y7eey.ap-northeast-2.rds.amazonaws.com:3306/database?charset=utf8"
   SQLALCHEMY_ECHO = False
   SECRET_KEY = 'SECRET-KEY'
 
