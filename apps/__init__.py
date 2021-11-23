@@ -24,7 +24,10 @@ def create_app(test_config=None):
     app.config.from_object(app_config)
 
     db = SQLAlchemy()
+    # db.init_app(app)
     db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
     # AUTH: 인증 관련 블루프린트 
     from . import auth
