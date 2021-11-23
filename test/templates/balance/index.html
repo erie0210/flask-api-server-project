@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}가게부{% endblock %}</h1>
+  {% if session['user_id'] %}
+    <a class="action" href="{{ url_for('balance.create') }}">작성하기</a>
+    <a class="action" href="{{ url_for('balance.rollbacklist') }}">복구하기</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">날짜: {{ post['created_at'].strftime('%Y-%m-%d') }}</div>
+          <div class="about">금액: {{ post['amount'] }} 원</div>
+          <div class="about">제목: {{ post['title'] }}</div>
+        </div>
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+    <a class="action" href="{{ url_for('balance.update', id=post['id']) }}">수정하기</a>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

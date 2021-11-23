@@ -1,5 +1,5 @@
+from flask import session
 import pytest
-# from utils import create_app
 from flask_sqlalchemy import SQLAlchemy
 from config import TestingConfig
 
@@ -32,8 +32,22 @@ def client(app):
     client = app.test_client()
     return client
 
-
-def test_get_user(client):
+def test_without_login(client):
     response = client.get('/')
     assert response.status_code == 302
-    # assert response.json == { 'users': [{'id': 1, 'name':'user1'}] } 
+
+def test_register(client):
+  assert client.get('/auth/register')
+    
+# test 데이터베이스 user 테이블에 {id:1. 'email': 'abc@gmail.com', 'password': 'asdf'} 데이터 존재할 때
+def test_login(client):
+  assert client.get('/auth/register')
+  response = client.post(
+    '/auth/login',
+    data = {'email': 'abc@gmail.com', 'password': 'asdf'}
+  )
+  assert response.status_code == 200
+
+def test_logout(client):
+  response = client.get('/auth/logout')
+  assert response.status_code == 302

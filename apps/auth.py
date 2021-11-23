@@ -13,7 +13,6 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 def login_required(view):
   @functools.wraps(view)
   def wrapped_view(**kwargs):
-    print("login_required session", session)
     session_keys = session.keys()
     if 'user' in session_keys:
       session['login']=False
@@ -106,8 +105,10 @@ def login():
     500:  
       description : 로그인 실패, ' auth/login' 로 리다이렉트
   """
-  if session['login']== True:
-    return redirect(url_for('index'))
+  session_keys = session.keys()
+  if 'login' in session_keys:
+    if session['login']== True:
+      return redirect(url_for('index'))
 
   if request.method == 'POST':
     email = request.form['email']
