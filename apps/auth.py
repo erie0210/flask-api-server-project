@@ -110,7 +110,6 @@ def login():
     error = None
 
     user = model.MyUser.query.filter_by(email=email).one()
-    print("user", user.id)
     if user is None:
       error = "이메일을 다시 확인해주세요"
     elif not check_password_hash(user.password, password):
@@ -138,5 +137,4 @@ def logout():
   """
   session.clear()
   session['login'] = False
-  print("session", session)
   return redirect(url_for('auth.login'))

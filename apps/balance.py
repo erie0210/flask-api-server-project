@@ -81,7 +81,6 @@ def create():
     if error is not None:
       flash(error)
     else:
-      print("title, amount, body",title, amount, body)
       data = model.Post(
         title = title,
         amount = amount,
@@ -90,7 +89,6 @@ def create():
         author_id=session['user_id'],
         deleted=0
       )
-      print("create data", data)
       model.db.session.add(data)
       model.db.session.commit()
       model.db.session.remove()
@@ -143,7 +141,6 @@ def update(id):
     if error is not None:
       flash(error)
     else:
-      print("title, amount, body",title, amount, body)
       model.Post.query.filter_by(id=id).update({
         "title": title,
         "amount": amount,
