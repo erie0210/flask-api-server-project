@@ -4,3 +4,4 @@ flasgger==0.9.5
 flask_sqlalchemy==2.5.1
 pytest>=6.2.5
 werkzeug==0.16.0
+python-dotenv==0.19.2
