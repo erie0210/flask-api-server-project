@@ -1,3 +1,10 @@
+실행화면
+
+https://user-images.githubusercontent.com/91591854/143060495-b6832933-68e0-42ca-9c83-0d03b4a2d63c.mp4
+
+
+
+
 ## 1. 과제정의
 
 ```
@@ -59,6 +66,7 @@ JINJA2
 ```
 도커: 
 $ docker pull ej00923/payhere
+이후 브라우저 localhost:{포트번호} 로 접근
 
 깃헙:
 
@@ -101,11 +109,6 @@ CREATE TABLE post (
 );
 ```
 
-## 4. 실행화면
-
-
-
-https://user-images.githubusercontent.com/91591854/143060495-b6832933-68e0-42ca-9c83-0d03b4a2d63c.mp4
 
 
 
