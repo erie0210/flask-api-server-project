@@ -12,7 +12,7 @@ class ProductionConfig(Config):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:12345678@127.0.0.1:3306/test"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://admin:adminadmin@database.cpzfde8y7eey.ap-northeast-2.rds.amazonaws.com:3306/database?charset=utf8"
     SQLALCHEMY_ECHO = False
     SECRET_KEY = 'SECRET-KEY'
 
