@@ -2,7 +2,7 @@
 http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/ -->
 
 ## Swagger로 API 정리
-http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/apidocs/
+ec2-54-180-105-148.ap-northeast-2.compute.amazonaws.com:5000/apidocs/
 * 수정이 필요한 부분: Http Method Delete와 Put(Update)를 제대로 적용시키지 못함
 
 ## 예시 실행 화면
