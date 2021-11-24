@@ -1,6 +1,10 @@
 ## 🎨 DIY! (실제 구동하는 서버입니다)
 http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/
 
+## Swagger로 API 정리
+http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/apidocs/
+* 수정이 필요한 부분: Http Method Delete와 Put(Update)를 제대로 적용시키지 못함
+
 ## 예시 실행 화면
 
 https://user-images.githubusercontent.com/91591854/143060495-b6832933-68e0-42ca-9c83-0d03b4a2d63c.mp4
@@ -49,9 +53,6 @@ https://user-images.githubusercontent.com/91591854/143060495-b6832933-68e0-42ca-
   pytest로 auth 테스트
 ```
 
-Swagger:  ec2-13-209-50-152.ap-northeast-2.compute.amazonaws.com:8888/apidocs
-* 수정이 필요한 부분: Http Method Delete와 Put(Update)를 제대로 적용시키지 못함
-
 
 ## 2. 사용한 기술
 
@@ -68,7 +69,7 @@ JINJA2
 
 ```
 도커: 
-$ docker pull ej00923/payhere
+$ docker pull ej00923/payhere_homework
 이후 브라우저 localhost:{포트번호} 로 접근
 
 깃헙:
