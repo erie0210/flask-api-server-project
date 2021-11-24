@@ -1,5 +1,5 @@
-## 🎨 DIY! (실제 구동하는 서버입니다)
-http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/
+<!-- ## 🎨 DIY! (실제 구동하는 서버입니다)
+http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/ -->
 
 ## Swagger로 API 정리
 http://ec2-3-34-98-144.ap-northeast-2.compute.amazonaws.com:5000/apidocs/
