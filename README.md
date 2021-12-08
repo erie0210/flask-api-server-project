@@ -12,7 +12,7 @@ https://user-images.githubusercontent.com/91591854/143060495-b6832933-68e0-42ca-
 
 
 
-## 1. 과제정의
+## 1. 
 
 ```
 - 이메일과 비밀번호 입력을 통해서 회원 가입: register()
